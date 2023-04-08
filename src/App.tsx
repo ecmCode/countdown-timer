@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Countdown from './Countdown';
-import StartButton from './StartButton';
-import MinutesInput from './MinutesInput';
-import Circle from './Circle';
+import Countdown from './components/Countdown';
+import StartButton from './components/StartButton';
+import MinutesInput from './components/MinutesInput';
+import Circle from './components/Circle';
 
 // Constants
 const originalTitle = document.title;
