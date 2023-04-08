@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Countdown from './Countdown';
 import StartButton from './StartButton';
 import MinutesInput from './MinutesInput';
+import Circle from './Circle';
 
 // Constants
 const originalTitle = document.title;
@@ -49,7 +50,7 @@ const App = () => {
   
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-screen relative ">
       <Countdown 
         isRunning={isRunning} 
         setIsRunning={setIsRunning} 
@@ -65,8 +66,10 @@ const App = () => {
       </div>
       <MinutesInput
         minutes={minutes}
-        handleMinutesChange={handleMinutesChange}
+        isRunning={isRunning}        
+        handleMinutesChange={handleMinutesChange} 
       />
+      <Circle timeLeft={timeLeft} minutes={minutes} isRunning={isRunning}/>
     </div>
  );
 };
