@@ -14,7 +14,7 @@ const audio = new Audio(alarmURL);
 const App = () => {
   
   const [isRunning, setIsRunning] = useState(false);
-  const [minutes, setMinutes] = useState(0); // input data for minutes to be calculated to seconds
+  const [minutes, setMinutes] = useState(1); // input data for minutes to be calculated to seconds
   const [timeLeft, setTimeLeft] = useState(0);
   const [darkMode, setDarkMode] = useState(false)
 
