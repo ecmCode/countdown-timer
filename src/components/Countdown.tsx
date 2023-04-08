@@ -3,11 +3,17 @@ import { useEffect } from 'react';
 type Props = {
     timeLeft: number;
     isRunning: boolean;
+    darkMode: boolean;
     setTimeLeft: React.Dispatch<React.SetStateAction<number>>
     setIsRunning: React.Dispatch<React.SetStateAction<boolean>>
 };
 
-const Countdown = ({isRunning,setIsRunning,timeLeft,setTimeLeft}: Props) => {
+const themeStyle = {
+  dark: "text-4xl font-bold text-slate-50",
+  light: "text-4xl font-bold text-slate-950"
+}
+
+const Countdown = ({isRunning,setIsRunning,timeLeft,setTimeLeft, darkMode}: Props) => {
   
     useEffect(() => {
         if (timeLeft === 0) return setIsRunning(false);
@@ -22,7 +28,7 @@ const Countdown = ({isRunning,setIsRunning,timeLeft,setTimeLeft}: Props) => {
   const seconds = timeLeft % 60;
 
   return (
-    <div className="text-4xl font-bold">
+    <div className={darkMode? themeStyle.dark : themeStyle.light}>
       {hours.toString().padStart(2, '0')}:
       {minutes.toString().padStart(2, '0')}:
       {seconds.toString().padStart(2, '0')}

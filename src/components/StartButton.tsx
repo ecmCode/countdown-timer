@@ -11,7 +11,7 @@ const style = {
 
 const StartButton = ({isRunning, handleStart, handleClear}: Props) => {
     return (
-        <div className="mt-4">
+        <div>
             {isRunning 
                 ? (
                     <button className={style.clear} onClick={handleClear}>
