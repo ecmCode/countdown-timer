@@ -38,10 +38,16 @@ const Countdown = ({
   const seconds = timeLeft % 60;
 
   return (
-    <div className={darkMode? themeStyle.dark : themeStyle.light}>
-      {hours.toString().padStart(2, '0')}:
-      {minutes.toString().padStart(2, '0')}:
-      {seconds.toString().padStart(2, '0')}
+
+    <div className='flex flex-col items-center'>
+      <div className={darkMode? themeStyle.dark : themeStyle.light}>
+        {hours.toString().padStart(2, '0')}:
+        {minutes.toString().padStart(2, '0')}:
+        {seconds.toString().padStart(2, '0')}
+      </div>
+      <div className='text-red-600 text-md h-4 font-bold'>
+        {pause && "Pause"}
+      </div>
     </div>
   );
 };

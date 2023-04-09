@@ -31,6 +31,7 @@ const App = () => {
   const handleClear = () => {
     setTimeLeft(0);
     setIsRunning(false);
+    setPause(false)
   };
 
   const timeup = () => {
@@ -58,6 +59,10 @@ const App = () => {
     light: "bg-zinc-200 -z-10 transition", 
   }
 
+  const flexStyle = {
+    row: "flex flex-row gap-2 items-center",
+    col: "flex flex-col gap-2 items-center"
+  }
   return (
     <div className={darkMode? themeStyle.dark : themeStyle.light}>
       <div className="flex flex-col items-center justify-center h-screen relative z-10">
@@ -69,29 +74,37 @@ const App = () => {
           darkMode={darkMode}
           pause={pause}
         />
-        <div className="mt-4 flex gap-2 items-center">
-          <StartButton 
-            isRunning={isRunning} 
-            handleStart={handleStart} 
-            handleClear={handleClear}
-          />
-          <DarkModeButton 
-            darkMode={darkMode}
-            setDarkMode={setDarkMode}
-          />
-          { isRunning && 
-            <PauseButton
-            pause={pause}
-            setPause={setPause}
-            />}
+        <div className="mt-4">
+          <div className={isRunning ? flexStyle.col : flexStyle.row}>
+            <DarkModeButton 
+              darkMode={darkMode}
+              setDarkMode={setDarkMode}
+            />
+            <div className="flex gap-2">
+              { isRunning && 
+                <PauseButton
+                pause={pause}
+                setPause={setPause}
+                />}
+              <StartButton 
+                isRunning={isRunning} 
+                handleStart={handleStart} 
+                handleClear={handleClear}
+              />
+            </div>
+          </div>
         </div>
-        <MinutesInput
-          minutes={minutes}
-          setMinutes={setMinutes}
-          isRunning={isRunning}        
-          handleMinutesChange={handleMinutesChange} 
-          darkMode={darkMode}
-        />
+          { !isRunning &&
+              <MinutesInput
+              minutes={minutes}
+              setMinutes={setMinutes}
+              isRunning={isRunning}        
+              handleMinutesChange={handleMinutesChange} 
+              darkMode={darkMode}
+            />
+          }
+
+        
         <Circle 
           timeLeft={timeLeft} 
           minutes={minutes} 

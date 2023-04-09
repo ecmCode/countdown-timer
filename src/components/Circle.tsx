@@ -19,7 +19,7 @@ const Circle = ({timeLeft, minutes, isRunning, darkMode}: Props) => {
     const totalTime = minutes * 60;
     const timeLeftPercentage = timeLeft / totalTime;
     const span = maxSpan * timeLeftPercentage
-    const strokeDasharray = `${Math.floor(span)}, 20000`
+    const strokeDasharray = `${Math.floor(span)}, 20000` // max 1005,20000
 
     // Circle color changes from green to red as R increases and G decreases
     // Different color tone when dark mode is activated.
@@ -30,7 +30,8 @@ const Circle = ({timeLeft, minutes, isRunning, darkMode}: Props) => {
     // Animation
     const initial: AnimationProps["initial"] = {
         opacity: 0,
-        strokeWidth:20,  
+        strokeWidth:20,
+        strokeDasharray: "1005,20000", 
     }
     
     const showCircle : AnimationProps["animate"] = {        
@@ -41,12 +42,13 @@ const Circle = ({timeLeft, minutes, isRunning, darkMode}: Props) => {
 
     const hideCircle : AnimationProps["animate"] = {
         opacity: 0,
-        strokeDasharray: "0, 20000",   
+        // strokeDasharray: strokeDasharray,   
+        strokeDasharray: "1005,20000", 
     }
     
     const transition : AnimationProps["transition"]= {
         duration: 1,  
-        ease: "circOut",
+        ease: "easeOut",
     }
     
     useEffect(() => {
