@@ -78,6 +78,7 @@ const App = () => {
         </div>
         <MinutesInput
           minutes={minutes}
+          setMinutes={setMinutes}
           isRunning={isRunning}        
           handleMinutesChange={handleMinutesChange} 
           darkMode={darkMode}
