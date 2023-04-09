@@ -51,8 +51,8 @@ const App = () => {
   }, [timeLeft]);
   
   const themeStyle = {
-    dark: "bg-gradient-to-br from-zinc-900 to-zinc-950 -z-10",
-    light: "bg-gradient-to-br from-zinc-50 to-zinc-200 -z-10", 
+    dark: "bg-zinc-950 -z-10 transition",
+    light: "bg-zinc-200 -z-10 transition", 
   }
 
   return (
@@ -83,7 +83,12 @@ const App = () => {
           handleMinutesChange={handleMinutesChange} 
           darkMode={darkMode}
         />
-        <Circle timeLeft={timeLeft} minutes={minutes} isRunning={isRunning}/>
+        <Circle 
+          timeLeft={timeLeft} 
+          minutes={minutes} 
+          isRunning={isRunning} 
+          darkMode={darkMode}
+        />
       </div>
     </div>
     

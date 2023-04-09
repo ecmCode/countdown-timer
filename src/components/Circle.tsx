@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { AnimationProps, motion } from "framer-motion";
 
 type Props = {
-    timeLeft: number;
-    minutes: number;
-    isRunning:boolean;
+    timeLeft: number
+    minutes: number
+    isRunning: boolean
+    darkMode: boolean
 }
 
 type CircleStatus = "show" | "hide"
 
-const Circle = ({timeLeft, minutes, isRunning}: Props) => {
+const Circle = ({timeLeft, minutes, isRunning, darkMode}: Props) => {
 
     const [circleStatus, setCircleStatus] = useState<CircleStatus>("hide")
 
@@ -21,8 +22,10 @@ const Circle = ({timeLeft, minutes, isRunning}: Props) => {
     const strokeDasharray = `${Math.floor(span)}, 20000`
 
     // Circle color changes from green to red as R increases and G decreases
+    // Different color tone when dark mode is activated.
     const R = Math.floor(255 - (255 * timeLeftPercentage ) + 50)
     const G = Math.floor(255 * timeLeftPercentage + 100)
+    const B = darkMode? 85 : 0 
 
     // Animation
     const initial: AnimationProps["initial"] = {
@@ -33,7 +36,7 @@ const Circle = ({timeLeft, minutes, isRunning}: Props) => {
     const showCircle : AnimationProps["animate"] = {        
         opacity: 1,
         strokeDasharray: strokeDasharray,
-        stroke:`rgb(${R},${G},0)`,
+        stroke:`rgb(${R},${G},${B})`,
     }
 
     const hideCircle : AnimationProps["animate"] = {
