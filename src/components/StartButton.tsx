@@ -11,21 +11,26 @@ const style = {
 
 const StartButton = ({isRunning, handleStart, handleClear}: Props) => {
     return (
-        <div>
-            {isRunning 
-                ? (
-                    <button className={style.clear} onClick={handleClear}>
-                        Clear
-                    </button>
-                )
+        // <div>
+        //     {isRunning 
+        //         ? (
+        //             <button className={style.clear} onClick={handleClear}>
+        //                 Clear
+        //             </button>
+        //         )
 
-                : (
-                    <button className={style.start} onClick={handleStart}>
-                        Start
-                    </button>
-                )
-            }
-        </div>
+        //         : (
+        //             <button className={style.start} onClick={handleStart}>
+        //                 Start
+        //             </button>
+        //         )
+        //     }
+        // </div>
+        <button 
+        className={isRunning? style.clear : style.start} 
+        onClick={isRunning? handleClear : handleStart}>
+            {isRunning? "Clear" : "Start"}
+        </button>
     );
 }
  

@@ -4,6 +4,7 @@ import StartButton from './components/StartButton';
 import MinutesInput from './components/MinutesInput';
 import Circle from './components/Circle';
 import DarkModeButton from './components/DarkModeButton';
+import PauseButton from './components/PauseButton';
 
 // Constants
 const originalTitle = document.title;
@@ -17,11 +18,13 @@ const App = () => {
   const [minutes, setMinutes] = useState(1); // input data for minutes to be calculated to seconds
   const [timeLeft, setTimeLeft] = useState(0);
   const [darkMode, setDarkMode] = useState(false)
+  const [pause,setPause] = useState(false) // pause the countdown
 
   const handleStart = () => {
     if (minutes > 0){
       setTimeLeft(minutes * 60);
       setIsRunning(true);
+      setPause(false)
     } 
   };
 
@@ -64,6 +67,7 @@ const App = () => {
           timeLeft={timeLeft} 
           setTimeLeft={setTimeLeft}
           darkMode={darkMode}
+          pause={pause}
         />
         <div className="mt-4 flex gap-2 items-center">
           <StartButton 
@@ -75,6 +79,11 @@ const App = () => {
             darkMode={darkMode}
             setDarkMode={setDarkMode}
           />
+          { isRunning && 
+            <PauseButton
+            pause={pause}
+            setPause={setPause}
+            />}
         </div>
         <MinutesInput
           minutes={minutes}

@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = {
-    timeLeft: number;
-    isRunning: boolean;
-    darkMode: boolean;
+    timeLeft: number
     setTimeLeft: React.Dispatch<React.SetStateAction<number>>
+    isRunning: boolean
     setIsRunning: React.Dispatch<React.SetStateAction<boolean>>
+    darkMode: boolean
+    pause: boolean
 };
 
 const themeStyle = {
@@ -13,15 +14,24 @@ const themeStyle = {
   light: "text-4xl font-bold text-slate-950"
 }
 
-const Countdown = ({isRunning,setIsRunning,timeLeft,setTimeLeft, darkMode}: Props) => {
-  
+const Countdown = ({
+  isRunning, 
+  setIsRunning, 
+  timeLeft, 
+  setTimeLeft, 
+  darkMode, 
+  pause}: Props) => {
+    
     useEffect(() => {
         if (timeLeft === 0) return setIsRunning(false);
         const intervalId = setInterval(() => {        
             isRunning && setTimeLeft(timeLeft - 1);
         }, 1000);
+        if(pause) {
+          clearInterval(intervalId)
+        }
         return () => clearInterval(intervalId)
-    }, [timeLeft]);
+    }, [timeLeft, pause]);
   
   const hours = Math.floor(timeLeft / 3600);
   const minutes = Math.floor((timeLeft % 3600) / 60);
