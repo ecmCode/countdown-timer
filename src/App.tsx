@@ -5,10 +5,11 @@ import MinutesInput from './components/MinutesInput';
 import Circle from './components/Circle';
 import DarkModeButton from './components/DarkModeButton';
 import PauseButton from './components/PauseButton';
+import alarmURL from "./assets/alarm.mp3"
+
 
 // Constants
 const originalTitle = document.title;
-const alarmURL = "src/assets/alarm.mp3";
 const alarmDuration = 5000;
 const audio = new Audio(alarmURL);
 
